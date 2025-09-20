@@ -1,14 +1,14 @@
 package com.adventure.react_exception.controller;
 
 import com.adventure.react_exception.domain.Exam;
+import com.adventure.react_exception.domain.Student;
 import com.adventure.react_exception.dto.ExamRequestDTO;
 import com.adventure.react_exception.dto.ExamResultRequestDTO;
-import com.adventure.react_exception.service.EnrollmentBusinessService;
-import com.adventure.react_exception.service.ExamBusinessService;
-import com.adventure.react_exception.service.ExamResultBusinessService;
-import com.adventure.react_exception.service.ReportCardService;
+import com.adventure.react_exception.dto.StudentRequestDTO;
+import com.adventure.react_exception.service.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +25,16 @@ public class StudentController {
     private final ExamBusinessService examService;
     private final ExamResultBusinessService resultService;
     private final ReportCardService reportCardService;
+    private final StudentService studentService;
+
+    @PostMapping
+    public Mono<ResponseEntity<Student>> createStudent(@Valid @RequestBody StudentRequestDTO request) {
+        Student student = new Student();
+        student.setName(request.getName());
+        student.setEmail(request.getEmail());
+        return studentService.createStudent(student)
+                .map(saved -> ResponseEntity.status(HttpStatus.CREATED).body(saved));
+    }
 
     // ✅ Enroll student in course
     @PostMapping("/{studentId}/enroll/{courseId}")
