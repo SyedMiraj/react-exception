@@ -1,0 +1,82 @@
+{
+  "info": {
+    "name": "Course & Exam Demo",
+    "_postman_id": "d1a2b3c4-5678-90ab-cdef-1234567890ab",
+    "description": "Postman collection for Course & Exam demo project",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Enroll Student in Course",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/students/1/enroll/2",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "students", "1", "enroll", "2"]
+        }
+      }
+    },
+    {
+      "name": "Schedule Exam",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"examName\": \"Spring Boot Midterm\",\n    \"examDate\": \"2025-10-05T10:00:00\",\n    \"totalMarks\": 100\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/students/courses/2/exams",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "students", "courses", "2", "exams"]
+        }
+      }
+    },
+    {
+      "name": "Record Exam Result",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"obtainedMarks\": 85\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/students/1/courses/2/exams/3/result",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "students", "1", "courses", "2", "exams", "3", "result"]
+        }
+      }
+    },
+    {
+      "name": "Get Student Report Card",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/students/1/report",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "students", "1", "report"]
+        }
+      }
+    }
+  ]
+}

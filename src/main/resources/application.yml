@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: react-exception
+
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/react-exception
+    username: root
+    password: root123
+
+  sql:
+    init:
+#      init mode always means it runs on startup
+      mode: never
+      encoding: utf-8
+      platform: postgres
+  jpa:
+    show-sql: true

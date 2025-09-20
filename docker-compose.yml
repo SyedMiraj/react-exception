@@ -1,0 +1,24 @@
+services:
+  postgresql:
+    container_name: react-exception
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root123
+      POSTGRES_DB: react-exception
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - react-exception-net
+    restart: unless-stopped
+
+
+networks:
+  react-exception-net:
+    driver: bridge
+
+volumes:
+  postgres:
